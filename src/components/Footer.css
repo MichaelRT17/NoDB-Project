@@ -1,0 +1,19 @@
+.footer {
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    margin: 20px 0 0 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.giphyLogo {
+    height: 50px;
+    width: auto;
+}
+
+.loveCalcLogo {
+    height: 45px;
+    width: auto;
+}

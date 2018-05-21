@@ -1,0 +1,36 @@
+.nameUpdater {
+    font-size: 20px;
+    text-align: center;
+    height: 30px;
+    width: 120px;
+    margin: 0 5px;
+}
+
+.updateButton {
+    height: 36px;
+    margin: 0 5px;
+    background-color: white;
+}
+
+.updateDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gifs {
+    margin: 0 5px;
+}
+
+.nameInput {
+    font-size: 20px;
+    text-align: center;
+    height: 30px;
+    width: 180px;
+    margin: 0 5px;
+}
+
+#headerInput {
+    background-color: black;
+    padding: 10px;
+}
