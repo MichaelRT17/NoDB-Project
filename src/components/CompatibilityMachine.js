@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Compatibility.css';
 import DeleteAll from './DeleteAll';
+import Footer from './Footer';
 
 export default class CompatibilityMachine extends Component {
     constructor() {
@@ -15,6 +16,7 @@ export default class CompatibilityMachine extends Component {
             newSName: ''
         }
         this.deleteAll = this.deleteAll.bind(this);
+        this.disclaimerAlert = this.disclaimerAlert.bind(this);
     }
 
     componentDidMount() {
@@ -31,7 +33,7 @@ export default class CompatibilityMachine extends Component {
                     .then(res => {
                         axios.post('/api/createMatch', { fName: this.state.fNameInput, sName: this.state.sNameInput, percentage: matchResult.percentage, gif: res.data.data.image_original_url })
                             .then(res => {
-                                this.setState({ matches: res.data })
+                                this.setState({ matches: res.data, fNameInput: '', sNameInput: '' })
                             })
                     })
             })
@@ -63,13 +65,17 @@ export default class CompatibilityMachine extends Component {
         })
     }
 
+    disclaimerAlert() {
+        alert('The results from this test have not been proven to be 100% accurate. Likewise, they have not been proven to be 100% inaccurate. Good luck!!!')
+    }
+
     render() {
         console.log(this.state)
         let mappedMatches = this.state.matches.map((match, i) => {
             return (
                 <div key={i}>
                     <div>
-                        <h1>{`${match.fName} has ${match.percentage}% compatibility with ${match.sName}!`}</h1>
+                        <h1>{`${match.fName.toUpperCase()} has ${match.percentage}% compatibility with ${match.sName.toUpperCase()}!`}</h1>
                         <div className='updateDiv'>
                             <div className='updateDiv'>
                                 <input className='nameUpdater' placeholder={match.fName} onChange={e => this.setState({ newFName: e.target.value })} />
@@ -92,19 +98,20 @@ export default class CompatibilityMachine extends Component {
         return (
             <div>
                 <div id='headerInput' className='updateDiv'>
-                    <input type='text' className='nameInput' placeholder='Your name here'
+                    <input type='text' className='nameInput' placeholder='Your name here' value={this.state.fNameInput}
                         onChange={e => this.setState({ fNameInput: e.target.value })} />
-                    <input type='text' className='nameInput' placeholder='Their name here'
+                    <input type='text' className='nameInput' placeholder='Their name here' value={this.state.sNameInput}
                         onChange={e => this.setState({ sNameInput: e.target.value })} />
                     <button className='updateButton'
                         onClick={() => this.createMatch(this.state.fNameInput, this.state.sNameInput)}>
                         Click for results...
                     </button>
-                    <DeleteAll deleteAll={this.deleteAll}/>
+                    <DeleteAll deleteAll={this.deleteAll} />
                 </div>
                 <div>
                     {mappedMatches}
                 </div>
+                <Footer disclaimer={this.disclaimerAlert} />
             </div>
         )
     }

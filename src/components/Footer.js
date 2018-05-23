@@ -1,10 +1,13 @@
 import React from 'react';
 import './Footer.css';
 
-export default function Footer() {
+const Footer = (props) => {
     return (
         <div className='footer'>
             <br />
+            <button className='updateButton'
+                onClick={() => props.disclaimer()}> Disclaimer
+            </button>
             <br />
             <hr />
             <img className='giphyLogo' src='https://raw.githubusercontent.com/cirla/vim-giphy/master/powered_by_giphy.gif' alt='Giphy Logo' />
@@ -13,3 +16,5 @@ export default function Footer() {
         </div>
     )
 }
+
+export default Footer

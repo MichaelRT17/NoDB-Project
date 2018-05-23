@@ -16,6 +16,6 @@ app.delete('/api/deleteAll', ctrl.deleteAll)
 
 const port = 8080;
 
-app.listen(port, ()=> {
+app.listen(port, () => {
     console.log('yo yo yo from port: ' + port)
 });
